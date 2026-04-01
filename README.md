@@ -3,6 +3,8 @@ Local Machine Setup for Void Linux (glibc)
 
 ### Your computer will be Void! Welcome to the Void!
 
+Please look into https://docs.voidlinux.org/ for further documentation
+
 These setup scripts are made for using the "base glibc live image" of Void linux + installation via chroot. This set of scripts sets up your machine with a fully functional text setup, so you can customise it later with any desktop environment you'd like.
 
 This setup uses the `glibc` image to focus on compatibility with other software (mainly interesting to developers like me who don't want to fiddle with glibc/musl compatibility issues). It might work fine with the `musl` image, but I haven't tested these scripts with the `musl` image.
@@ -26,6 +28,7 @@ The scripts have two sections: one for you to edit with your personal settings, 
 - Socklog for logging
 - Libvirtd for handling virtualisation tasks + automatic setup for IOMMU (detects AMD/Intel and sets up the flags accordingly, either amd_iommu or intel_iommu)
 - GRUB-BTRFS for handling snapshots with Timeshift
+- Weekly `fstrim` CRON job
 
 ### Setup how-to:
 - **These scripts are not suitable for dual-boot. THEY WILL WIPE YOUR ENTIRE DISKS. BE WARNED!**
@@ -48,7 +51,7 @@ The scripts have two sections: one for you to edit with your personal settings, 
 - Upgrade your xbps utility with `xbps-install -Suy xbps`
 - Install required packages with `xbps-install -Suy git parted gptfdisk curl wget openssl`
 - Install `nano` (optional) with `xbps-install -Suy nano`
-- Clone the repository with `git clone https://github.com/cezarlamann/void-setup`
+- Clone the repository with `git clone https://github.com/cezarlamann/void-setup.git`
 - `cd` into the folder with `cd void-setup`
 - Choose if you want a single disk or dual disk setup by entering the folders `cd single-disk` or `cd dual-disk`
 - Edit your settings, locale, etc with a text editor (`vi` or `nano`)
